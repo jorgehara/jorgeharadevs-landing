@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Jorge Hara — Full Stack Developer especializado en IA, WhatsApp Business API y SaaS. Builder de productos digitales en producción.">
+    <meta property="og:title" content="Jorge Hara | Full Stack Developer & SaaS Builder">
+    <meta property="og:description" content="Especialista en IA, WhatsApp Business API y arquitecturas SaaS escalables.">
+    <meta property="og:image" content="./perfil.png">
+    <title>Jorge Hara | Full Stack Developer & SaaS Builder</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --gold:   #FFD700;
+            --orange: #FF6B00;
+            --yellow: #FFE135;
+            --aura:   #FF8C00;
+            --blue:   #00CED1;
+            --dark:   #1a1a2e;
+            --panel:  #16213e;
+            --text:   #FFFACD;
+            --muted:  #B8860B;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            background: var(--dark);
+            color: var(--text);
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* ── CANVAS ── */
+        #particles-canvas {
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* ── NAVBAR ── */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 2.5rem;
+            background: rgba(26, 26, 46, 0.75);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(255, 215, 0, 0.1);
+            transition: background 0.3s;
+        }
+
+        .nav-logo {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.4rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--gold), var(--aura));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+            letter-spacing: -0.03em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-size: 0.88rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover { color: var(--gold); }
+
+        .lang-toggle {
+            display: flex;
+            gap: 0.2rem;
+            background: rgba(255, 215, 0, 0.08);
+            border: 1px solid rgba(184, 134, 11, 0.4);
+            border-radius: 20px;
+            padding: 0.2rem;
+        }
+
+        .lang-btn {
+            background: none;
+            border: none;
+            color: var(--muted);
+            font-size: 0.72rem;
+            font-weight: 700;
+            font-family: 'JetBrains Mono', monospace;
+            padding: 0.22rem 0.65rem;
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all 0.2s;
+            letter-spacing: 0.06em;
+        }
+
+        .lang-btn.active {
+            background: var(--gold);
+            color: var(--dark);
+        }
+
+        /* ── HERO ── */
+        #hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 7rem 2rem 5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content { max-width: 720px; }
+
+        .hero-avatar-wrap {
+            display: inline-block;
+            margin-bottom: 1.75rem;
+            position: relative;
+        }
+
+        .hero-avatar {
+            width: 148px;
+            height: 148px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--gold);
+            display: block;
+            animation: aura-pulse 2.8s ease-in-out infinite;
+        }
+
+        .hero-avatar-wrap::before {
+            content: '';
+            position: absolute;
+            inset: -8px;
+            border-radius: 50%;
+            background: conic-gradient(var(--gold), var(--aura), var(--yellow), var(--orange), var(--gold));
+            z-index: -1;
+            animation: spin-slow 6s linear infinite;
+            opacity: 0.6;
+        }
+
+        .hero-avatar-wrap::after {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            border-radius: 50%;
+            background: var(--dark);
+            z-index: -1;
+        }
+
+        @keyframes aura-pulse {
+            0%, 100% { box-shadow: 0 0 20px var(--gold), 0 0 50px var(--aura), 0 0 80px rgba(255,215,0,0.2); }
+            50%       { box-shadow: 0 0 40px var(--gold), 0 0 90px var(--aura), 0 0 140px rgba(255,215,0,0.4), 0 0 180px rgba(255,140,0,0.15); }
+        }
+
+        @keyframes spin-slow { to { transform: rotate(360deg); } }
+
+        .hero-name {
+            font-size: clamp(2.8rem, 7vw, 5rem);
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--aura) 50%, var(--yellow) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.03em;
+            line-height: 1.05;
+            margin-bottom: 0.6rem;
+        }
+
+        .hero-typewriter {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: clamp(0.95rem, 2.5vw, 1.25rem);
+            color: var(--blue);
+            margin-bottom: 1.75rem;
+            min-height: 2rem;
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 2px;
+            height: 1em;
+            background: var(--blue);
+            vertical-align: middle;
+            margin-left: 2px;
+            animation: blink 1s step-end infinite;
+        }
+
+        @keyframes blink { 50% { opacity: 0; } }
+
+        .hero-desc {
+            font-size: 0.98rem;
+            color: rgba(255, 250, 205, 0.7);
+            line-height: 1.8;
+            margin-bottom: 2.5rem;
+        }
+
+        .hero-ctas {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(135deg, var(--gold), var(--aura));
+            color: var(--dark);
+            text-decoration: none;
+            padding: 0.85rem 2.2rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            letter-spacing: 0.04em;
+            box-shadow: 0 4px 24px rgba(255,215,0,0.3);
+            transition: all 0.3s;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 35px rgba(255,215,0,0.5);
+        }
+
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: transparent;
+            color: var(--gold);
+            text-decoration: none;
+            padding: 0.85rem 2.2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            letter-spacing: 0.04em;
+            border: 1.5px solid var(--gold);
+            transition: all 0.3s;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255,215,0,0.1);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 24px rgba(255,215,0,0.2);
+        }
+
+        /* ── STATS ── */
+        #stats {
+            position: relative;
+            z-index: 1;
+            background: var(--panel);
+            border-top: 1px solid rgba(255,140,0,0.25);
+            border-bottom: 1px solid rgba(255,140,0,0.25);
+            padding: 2.75rem 2rem;
+        }
+
+        .stats-grid {
+            max-width: 860px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .stat-item strong {
+            display: block;
+            font-size: 2.2rem;
+            font-weight: 900;
+            font-family: 'JetBrains Mono', monospace;
+            background: linear-gradient(135deg, var(--gold), var(--aura));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-item span {
+            font-size: 0.72rem;
+            color: var(--muted);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+
+        /* ── SHARED SECTION ── */
+        section { position: relative; z-index: 1; }
+
+        .section-title {
+            text-align: center;
+            font-size: clamp(1.7rem, 4vw, 2.4rem);
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--gold), var(--aura));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.75rem;
+        }
+
+        .section-line {
+            width: 56px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--gold), var(--aura));
+            margin: 0 auto 3rem;
+            border-radius: 2px;
+        }
+
+        /* ── ABOUT ── */
+        #about { padding: 6rem 2rem; }
+
+        .about-grid {
+            max-width: 920px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3.5rem;
+            align-items: start;
+        }
+
+        .about-text p {
+            color: rgba(255,250,205,0.85);
+            line-height: 1.85;
+            font-size: 0.95rem;
+            margin-bottom: 1.1rem;
+        }
+
+        .skill-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+        }
+
+        .pill {
+            background: rgba(255,215,0,0.07);
+            border: 1px solid rgba(255,215,0,0.22);
+            color: var(--gold);
+            padding: 0.35rem 0.9rem;
+            border-radius: 20px;
+            font-size: 0.78rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 500;
+            transition: all 0.2s;
+            cursor: default;
+        }
+
+        .pill:hover {
+            background: rgba(255,215,0,0.14);
+            border-color: var(--gold);
+        }
+
+        .pill.blue {
+            background: rgba(0,206,209,0.07);
+            border-color: rgba(0,206,209,0.22);
+            color: var(--blue);
+        }
+
+        .pill.blue:hover {
+            background: rgba(0,206,209,0.14);
+            border-color: var(--blue);
+        }
+
+        /* ── STACK ── */
+        #stack {
+            padding: 6rem 2rem;
+            background: var(--panel);
+        }
+
+        .stack-grid {
+            max-width: 920px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(105px, 1fr));
+            gap: 1.4rem;
+        }
+
+        .tech-card {
+            background: rgba(255,215,0,0.03);
+            border: 1px solid rgba(255,140,0,0.14);
+            border-radius: 14px;
+            padding: 1.5rem 1rem;
+            text-align: center;
+            transition: all 0.3s;
+            cursor: default;
+        }
+
+        .tech-card:hover {
+            border-color: var(--gold);
+            background: rgba(255,215,0,0.09);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 28px rgba(255,215,0,0.13);
+        }
+
+        .tech-card img,
+        .tech-card .tech-emoji {
+            width: 40px;
+            height: 40px;
+            margin: 0 auto 0.7rem;
+            display: block;
+        }
+
+        .tech-card .tech-emoji {
+            font-size: 2.2rem;
+            line-height: 1;
+            width: auto;
+            height: auto;
+        }
+
+        .tech-card span {
+            display: block;
+            font-size: 0.72rem;
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--muted);
+            font-weight: 500;
+            margin-top: 0.1rem;
+        }
+
+        .tech-card:hover span { color: var(--gold); }
+
+        /* ── PROJECTS ── */
+        #projects { padding: 6rem 2rem; }
+
+        .projects-grid {
+            max-width: 920px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: rgba(22, 33, 62, 0.85);
+            border: 1px solid rgba(255,140,0,0.18);
+            border-radius: 18px;
+            padding: 2.2rem;
+            backdrop-filter: blur(12px);
+            transition: all 0.35s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--gold), var(--aura), var(--blue));
+        }
+
+        .project-card:hover {
+            border-color: var(--aura);
+            transform: translateY(-7px);
+            box-shadow: 0 18px 48px rgba(255,215,0,0.14);
+        }
+
+        .project-tag {
+            display: inline-block;
+            background: rgba(0,206,209,0.1);
+            border: 1px solid rgba(0,206,209,0.28);
+            color: var(--blue);
+            font-size: 0.68rem;
+            font-family: 'JetBrains Mono', monospace;
+            padding: 0.22rem 0.75rem;
+            border-radius: 20px;
+            margin-bottom: 1rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .project-title {
+            font-size: 1.45rem;
+            font-weight: 700;
+            color: var(--gold);
+            margin-bottom: 0.8rem;
+        }
+
+        .project-desc {
+            font-size: 0.9rem;
+            color: rgba(255,250,205,0.75);
+            line-height: 1.75;
+            margin-bottom: 1.4rem;
+        }
+
+        .project-impact {
+            background: rgba(255,215,0,0.05);
+            border-left: 3px solid var(--aura);
+            padding: 0.8rem 1rem;
+            border-radius: 0 8px 8px 0;
+            font-size: 0.83rem;
+            color: var(--muted);
+            margin-bottom: 1.4rem;
+            line-height: 1.55;
+        }
+
+        .project-tech {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-tech span {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.68rem;
+            background: rgba(255,215,0,0.07);
+            color: var(--gold);
+            padding: 0.22rem 0.6rem;
+            border-radius: 5px;
+            font-weight: 500;
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            color: var(--blue);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+
+        .project-link:hover { color: var(--gold); }
+
+        /* ── CONTACT ── */
+        #contact {
+            padding: 6rem 2rem;
+            background: var(--panel);
+            text-align: center;
+        }
+
+        .contact-subtitle {
+            color: var(--muted);
+            font-size: 0.95rem;
+            max-width: 480px;
+            margin: 0 auto 3rem;
+            line-height: 1.7;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.2rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            background: rgba(255,215,0,0.04);
+            border: 1px solid rgba(255,140,0,0.18);
+            color: var(--text);
+            text-decoration: none;
+            padding: 1rem 1.6rem;
+            border-radius: 14px;
+            font-size: 0.88rem;
+            font-weight: 500;
+            transition: all 0.3s;
+            min-width: 160px;
+            justify-content: center;
+        }
+
+        .contact-link:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+            background: rgba(255,215,0,0.08);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(255,215,0,0.1);
+        }
+
+        /* ── WHATSAPP FLOAT ── */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 999;
+            background: #25D366;
+            color: white;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: 0 4px 22px rgba(37,211,102,0.45);
+            transition: all 0.3s;
+            animation: float-bounce 3s ease-in-out infinite;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.12);
+            box-shadow: 0 8px 32px rgba(37,211,102,0.65);
+        }
+
+        @keyframes float-bounce {
+            0%, 100% { transform: translateY(0); }
+            50%       { transform: translateY(-5px); }
+        }
+
+        .whatsapp-float svg { width: 28px; height: 28px; }
+
+        /* ── FOOTER ── */
+        footer {
+            background: #0d0d1a;
+            border-top: 1px solid rgba(255,140,0,0.12);
+            padding: 2rem;
+            text-align: center;
+            color: var(--muted);
+            font-size: 0.78rem;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* ── REVEAL ── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.65s ease, transform 0.65s ease;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+            .projects-grid { grid-template-columns: 1fr; }
+            .contact-links { flex-direction: column; align-items: center; }
+            nav { padding: 0.9rem 1.25rem; }
+        }
+    </style>
+</head>
+<body>
+
+<canvas id="particles-canvas"></canvas>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+    <a href="#hero" class="nav-logo">JH_</a>
+    <ul class="nav-links">
+        <li><a href="#about"    data-es="Sobre mí"  data-en="About">Sobre mí</a></li>
+        <li><a href="#stack"    data-es="Stack"     data-en="Stack">Stack</a></li>
+        <li><a href="#projects" data-es="Proyectos" data-en="Projects">Proyectos</a></li>
+        <li><a href="#contact"  data-es="Contacto"  data-en="Contact">Contacto</a></li>
+    </ul>
+    <div class="lang-toggle">
+        <button class="lang-btn active" id="btn-es" onclick="setLang('es')">ES</button>
+        <button class="lang-btn"        id="btn-en" onclick="setLang('en')">EN</button>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+    <div class="hero-content">
+        <div class="hero-avatar-wrap">
+            <img src="./perfil.png" alt="Jorge Hara" class="hero-avatar">
+        </div>
+        <h1 class="hero-name">JORGE HARA</h1>
+        <div class="hero-typewriter">
+            <span id="typewriter-text"></span><span class="cursor"></span>
+        </div>
+        <p class="hero-desc"
+           data-es="Especialista en el desarrollo y escalado de productos digitales. Desde arquitecturas robustas hasta integraciones con IA y WhatsApp Business API — de la idea al MVP en producción."
+           data-en="Specialist in building and scaling digital products. From robust architectures to AI and WhatsApp Business API integrations — from idea to production-ready MVP.">
+            Especialista en el desarrollo y escalado de productos digitales. Desde arquitecturas robustas hasta integraciones con IA y WhatsApp Business API — de la idea al MVP en producción.
+        </p>
+        <div class="hero-ctas">
+            <a href="https://wa.me/5493794051686" target="_blank" class="btn-primary">
+                💬 <span data-es="Hablemos" data-en="Let's talk">Hablemos</span>
+            </a>
+            <a href="#projects" class="btn-secondary">
+                <span data-es="Ver proyectos" data-en="See projects">Ver proyectos</span> →
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- STATS -->
+<section id="stats">
+    <div class="stats-grid">
+        <div class="stat-item">
+            <strong>6+</strong>
+            <span data-es="Años en producción" data-en="Years in production">Años en producción</span>
+        </div>
+        <div class="stat-item">
+            <strong>2</strong>
+            <span data-es="Productos activos" data-en="Active products">Productos activos</span>
+        </div>
+        <div class="stat-item">
+            <strong>100%</strong>
+            <span data-es="Full Stack" data-en="Full Stack">Full Stack</span>
+        </div>
+        <div class="stat-item">
+            <strong>∞</strong>
+            <span data-es="Automatizaciones" data-en="Automations">Automatizaciones</span>
+        </div>
+    </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+    <h2 class="section-title reveal" data-es="Sobre mí" data-en="About me">Sobre mí</h2>
+    <div class="section-line reveal"></div>
+    <div class="about-grid">
+        <div class="about-text reveal">
+            <p data-es="Fundador de Jorge Hara Devs. Lidero el ciclo de vida completo de productos digitales: desde la arquitectura inicial hasta el despliegue en producción y el mantenimiento evolutivo."
+               data-en="Founder of Jorge Hara Devs. I lead the complete lifecycle of digital products: from initial architecture to production deployment and ongoing maintenance.">
+                Fundador de Jorge Hara Devs. Lidero el ciclo de vida completo de productos digitales: desde la arquitectura inicial hasta el despliegue en producción y el mantenimiento evolutivo.
+            </p>
+            <p data-es="Me especializo en la intersección entre arquitecturas SaaS escalables y automatización inteligente. Integro WhatsApp Business API con modelos de IA para transformar procesos críticos de negocio."
+               data-en="I specialize in the intersection of scalable SaaS architectures and intelligent automation. I integrate WhatsApp Business API with AI models to transform critical business processes.">
+                Me especializo en la intersección entre arquitecturas SaaS escalables y automatización inteligente. Integro WhatsApp Business API con modelos de IA para transformar procesos críticos de negocio.
+            </p>
+        </div>
+        <div class="skill-pills reveal">
+            <span class="pill">Full Stack</span>
+            <span class="pill">SaaS</span>
+            <span class="pill">WhatsApp API</span>
+            <span class="pill blue">NLP / IA</span>
+            <span class="pill">Docker</span>
+            <span class="pill blue">Cloud</span>
+            <span class="pill">CRM Integration</span>
+            <span class="pill blue">REST APIs</span>
+            <span class="pill">Node.js</span>
+            <span class="pill">React</span>
+            <span class="pill blue">TypeScript</span>
+            <span class="pill">.NET / C#</span>
+            <span class="pill blue">PostgreSQL</span>
+            <span class="pill">CI/CD</span>
+        </div>
+    </div>
+</section>
+
+<!-- STACK -->
+<section id="stack">
+    <h2 class="section-title reveal" data-es="Stack Tecnológico" data-en="Tech Stack">Stack Tecnológico</h2>
+    <div class="section-line reveal"></div>
+    <div class="stack-grid">
+        <div class="tech-card reveal">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/react/react-original.svg" alt="React">
+            <span>React.js</span>
+        </div>
+        <div class="tech-card reveal">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/nextjs/nextjs-original.svg" alt="Next.js" style="filter:invert(0.9) brightness(0.9)">
+            <span>Next.js</span>
+        </div>
+        <div class="tech-card reveal">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/nodejs/nodejs-original.svg" alt="Node.js">
+            <span>Node.js</span>
+        </div>
+        <div class="tech-card reveal">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/nestjs/nestjs-original.svg" alt="NestJS">
+            <span>NestJS</span>
+        </div>
+        <div class="tech-card reveal">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/typescript/typescript-original.svg" alt="TypeScript">
+            <span>TypeScript</span>
+        </div>
+        <div class="tech-card reveal">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/csharp/csharp-original.svg" alt="C#">
+            <span>C# / .NET</span>
+        </div>
+        <div class="tech-card reveal">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/docker/docker-original.svg" alt="Docker">
+            <span>Docker</span>
+        </div>
+        <div class="tech-card reveal">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/postgresql/postgresql-original.svg" alt="PostgreSQL">
+            <span>PostgreSQL</span>
+        </div>
+        <div class="tech-card reveal">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/mongodb/mongodb-original.svg" alt="MongoDB">
+            <span>MongoDB</span>
+        </div>
+        <div class="tech-card reveal">
+            <div class="tech-emoji">📲</div>
+            <span>WhatsApp API</span>
+        </div>
+        <div class="tech-card reveal">
+            <div class="tech-emoji">🤖</div>
+            <span>IA / NLP</span>
+        </div>
+        <div class="tech-card reveal">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/git/git-original.svg" alt="Git">
+            <span>Git / CI/CD</span>
+        </div>
+    </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+    <h2 class="section-title reveal" data-es="Proyectos Destacados" data-en="Featured Projects">Proyectos Destacados</h2>
+    <div class="section-line reveal"></div>
+    <div class="projects-grid">
+
+        <div class="project-card reveal">
+            <span class="project-tag" data-es="En Producción" data-en="Live">En Producción</span>
+            <h3 class="project-title">CitaMedica</h3>
+            <p class="project-desc"
+               data-es="Sistema integral de gestión administrativa y atención médica. Digitalización completa del flujo de pacientes: desde el turno inicial hasta la administración interna del consultorio."
+               data-en="Comprehensive medical management system. Complete digitalization of patient flow: from initial appointment to internal clinic administration.">
+                Sistema integral de gestión administrativa y atención médica. Digitalización completa del flujo de pacientes: desde el turno inicial hasta la administración interna del consultorio.
+            </p>
+            <div class="project-impact"
+                 data-es="⚡ Impacto: Eliminación del 100% del proceso manual en la gestión de turnos y administración clínica."
+                 data-en="⚡ Impact: 100% elimination of manual processes in appointment management and clinic administration.">
+                ⚡ Impacto: Eliminación del 100% del proceso manual en la gestión de turnos y administración clínica.
+            </div>
+            <div class="project-tech">
+                <span>React</span><span>Node.js</span><span>Cloud</span><span>Docker</span>
+            </div>
+            <a href="https://micitamedica.me" target="_blank" class="project-link">🌐 micitamedica.me →</a>
+        </div>
+
+        <div class="project-card reveal">
+            <span class="project-tag" data-es="IA + WhatsApp" data-en="AI + WhatsApp">IA + WhatsApp</span>
+            <h3 class="project-title">AnitaChatBot</h3>
+            <p class="project-desc"
+               data-es="Chatbot inteligente para el sector salud y odontológico. Captura de leads y agendamiento de citas mediante procesamiento de lenguaje natural, sin intervención humana."
+               data-en="Intelligent chatbot for healthcare and dental sectors. Lead capture and appointment scheduling through NLP, without human intervention.">
+                Chatbot inteligente para el sector salud y odontológico. Captura de leads y agendamiento de citas mediante procesamiento de lenguaje natural, sin intervención humana.
+            </p>
+            <div class="project-impact"
+                 data-es="⚡ Impacto: Atención automática 24/7. Reducción drástica de consultas manuales repetitivas."
+                 data-en="⚡ Impact: Automatic 24/7 service. Drastic reduction of repetitive manual inquiries.">
+                ⚡ Impacto: Atención automática 24/7. Reducción drástica de consultas manuales repetitivas.
+            </div>
+            <div class="project-tech">
+                <span>IA / NLP</span><span>WhatsApp API</span><span>Node.js</span>
+            </div>
+            <a href="https://wa.me/5493794051686?text=Hola!%20Vi%20tu%20portfolio%20y%20me%20interesa%20AnitaChatBot" target="_blank" class="project-link">
+                💬 <span data-es="Consultar demo" data-en="Request demo">Consultar demo</span> →
+            </a>
+        </div>
+
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+    <h2 class="section-title reveal" data-es="¿Hablamos?" data-en="Let's talk?">¿Hablamos?</h2>
+    <div class="section-line reveal"></div>
+    <p class="contact-subtitle reveal"
+       data-es="Abierto a proyectos, colaboraciones y consultas técnicas. Respondés rápido por WhatsApp."
+       data-en="Open to projects, collaborations and technical consultations. Fast response on WhatsApp.">
+        Abierto a proyectos, colaboraciones y consultas técnicas. Respondés rápido por WhatsApp.
+    </p>
+    <div class="contact-links">
+        <a href="https://wa.me/5493794051686" target="_blank" class="contact-link reveal">
+            <span>📱</span> WhatsApp
+        </a>
+        <a href="mailto:empresamodelo2025@gmail.com" class="contact-link reveal">
+            <span>✉️</span> Email
+        </a>
+        <a href="https://github.com/jorgehara" target="_blank" class="contact-link reveal">
+            <span>🐙</span> GitHub
+        </a>
+        <a href="https://linkedin.com/in/jorgeharadevs" target="_blank" class="contact-link reveal">
+            <span>💼</span> LinkedIn
+        </a>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <span data-es="© 2026 Jorge Hara — Construido con código, café y determinación."
+          data-en="© 2026 Jorge Hara — Built with code, coffee and determination.">
+        © 2026 Jorge Hara — Construido con código, café y determinación.
+    </span>
+</footer>
+
+<!-- FLOATING WHATSAPP -->
+<a href="https://wa.me/5493794051686" target="_blank" class="whatsapp-float" title="WhatsApp">
+    <svg viewBox="0 0 24 24" fill="currentColor">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
+</a>
+
+<script>
+// ===== PARTICLES =====
+const canvas = document.getElementById('particles-canvas');
+const ctx    = canvas.getContext('2d');
+let particles = [];
+
+function resizeCanvas() {
+    canvas.width  = window.innerWidth;
+    canvas.height = window.innerHeight;
+}
+
+const COLORS = ['#FFD700', '#FF8C00', '#FFE135', '#00CED1', '#FF6B00'];
+
+class Particle {
+    constructor() { this.reset(true); }
+    reset(init) {
+        this.x     = Math.random() * canvas.width;
+        this.y     = init ? Math.random() * canvas.height : (Math.random() > 0.5 ? -4 : canvas.height + 4);
+        this.vx    = (Math.random() - 0.5) * 0.35;
+        this.vy    = (Math.random() - 0.5) * 0.35;
+        this.r     = Math.random() * 1.8 + 0.8;
+        this.color = COLORS[Math.floor(Math.random() * COLORS.length)];
+        this.alpha = Math.random() * 0.45 + 0.15;
+    }
+    update() {
+        this.x += this.vx;
+        this.y += this.vy;
+        if (this.x < -5 || this.x > canvas.width + 5 || this.y < -5 || this.y > canvas.height + 5) this.reset(false);
+    }
+    draw() {
+        ctx.save();
+        ctx.globalAlpha = this.alpha;
+        ctx.fillStyle   = this.color;
+        ctx.shadowBlur  = 10;
+        ctx.shadowColor = this.color;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+    }
+}
+
+function initParticles() {
+    const N = Math.min(90, Math.floor(canvas.width * canvas.height / 10000));
+    particles = Array.from({ length: N }, () => new Particle());
+}
+
+function drawLines() {
+    for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+            const dx   = particles[i].x - particles[j].x;
+            const dy   = particles[i].y - particles[j].y;
+            const dist = Math.hypot(dx, dy);
+            if (dist < 130) {
+                ctx.save();
+                ctx.globalAlpha = (1 - dist / 130) * 0.12;
+                ctx.strokeStyle = '#FFD700';
+                ctx.lineWidth   = 0.6;
+                ctx.beginPath();
+                ctx.moveTo(particles[i].x, particles[i].y);
+                ctx.lineTo(particles[j].x, particles[j].y);
+                ctx.stroke();
+                ctx.restore();
+            }
+        }
+    }
+}
+
+function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    drawLines();
+    particles.forEach(p => { p.update(); p.draw(); });
+    requestAnimationFrame(animate);
+}
+
+resizeCanvas();
+initParticles();
+animate();
+window.addEventListener('resize', () => { resizeCanvas(); initParticles(); });
+
+// ===== TYPEWRITER =====
+const ROLES = {
+    es: ['Full Stack Developer', 'SaaS Builder', 'Especialista en IA', 'WhatsApp API Expert'],
+    en: ['Full Stack Developer', 'SaaS Builder',  'AI Specialist',       'WhatsApp API Expert']
+};
+let currentLang = 'es';
+let roleIdx = 0, charIdx = 0, deleting = false;
+const twEl = document.getElementById('typewriter-text');
+
+function typewrite() {
+    const current = ROLES[currentLang][roleIdx];
+    if (!deleting) {
+        twEl.textContent = current.slice(0, ++charIdx);
+        if (charIdx === current.length) { deleting = true; setTimeout(typewrite, 2200); return; }
+        setTimeout(typewrite, 75);
+    } else {
+        twEl.textContent = current.slice(0, --charIdx);
+        if (charIdx === 0) {
+            deleting = false;
+            roleIdx = (roleIdx + 1) % ROLES[currentLang].length;
+        }
+        setTimeout(typewrite, 38);
+    }
+}
+typewrite();
+
+// ===== LANGUAGE TOGGLE =====
+function setLang(lang) {
+    currentLang = lang;
+    document.querySelectorAll('[data-es]').forEach(el => {
+        el.textContent = el.dataset[lang];
+    });
+    document.getElementById('btn-es').classList.toggle('active', lang === 'es');
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    charIdx = 0;
+    deleting = false;
+}
+
+// ===== SCROLL REVEAL =====
+const revealObserver = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+// ===== NAVBAR SCROLL =====
+window.addEventListener('scroll', () => {
+    document.getElementById('navbar').style.background =
+        window.scrollY > 60
+            ? 'rgba(22, 33, 62, 0.97)'
+            : 'rgba(26, 26, 46, 0.75)';
+});
+</script>
+</body>
+</html>
