@@ -8,6 +8,7 @@
     <meta property="og:description" content="Especialista en IA, WhatsApp Business API y arquitecturas SaaS escalables.">
     <meta property="og:image" content="./perfil.png">
     <title>Jorge Hara | Full Stack Developer & SaaS Builder</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231a1a2e'/%3E%3Crect width='32' height='32' rx='7' fill='none' stroke='%23FFD700' stroke-width='1.5'/%3E%3Ctext x='16' y='22' font-family='Arial Black,Arial' font-weight='900' font-size='13' fill='%23FFD700' text-anchor='middle'%3EJH%3C/text%3E%3C/svg%3E">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <style>
@@ -639,11 +640,209 @@
             transform: translateY(0);
         }
 
+        /* ── ECOSYSTEM ── */
+        #ecosystem { padding: 6rem 2rem; background: var(--panel); }
+
+        .eco-sub-title {
+            text-align: center;
+            font-size: 1rem;
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--muted);
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+        }
+
+        .tools-grid {
+            max-width: 920px;
+            margin: 0 auto 3.5rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .tool-card {
+            background: rgba(255,215,0,0.03);
+            border: 1px solid rgba(255,140,0,0.18);
+            border-radius: 16px;
+            padding: 1.8rem 1.6rem;
+            text-align: center;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tool-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--gold), var(--aura));
+        }
+
+        .tool-card:hover {
+            border-color: var(--gold);
+            background: rgba(255,215,0,0.07);
+            transform: translateY(-5px);
+            box-shadow: 0 12px 32px rgba(255,215,0,0.12);
+        }
+
+        .tool-icon { font-size: 2.4rem; margin-bottom: 0.8rem; display: block; }
+
+        .tool-name {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .tool-desc {
+            font-size: 0.82rem;
+            color: rgba(255,250,205,0.65);
+            line-height: 1.65;
+            margin-bottom: 1rem;
+        }
+
+        .tool-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            color: var(--blue);
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+        .tool-link:hover { color: var(--gold); }
+
+        .tool-badge {
+            display: inline-block;
+            background: rgba(0,206,209,0.1);
+            border: 1px solid rgba(0,206,209,0.28);
+            color: var(--blue);
+            font-size: 0.64rem;
+            font-family: 'JetBrains Mono', monospace;
+            padding: 0.18rem 0.6rem;
+            border-radius: 20px;
+            margin-bottom: 0.8rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .bots-grid {
+            max-width: 920px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .bot-card {
+            background: rgba(22, 33, 62, 0.85);
+            border: 1px solid rgba(255,140,0,0.18);
+            border-radius: 16px;
+            padding: 1.8rem 1.6rem;
+            text-align: center;
+            backdrop-filter: blur(12px);
+            transition: all 0.35s;
+        }
+
+        .bot-card:hover {
+            border-color: var(--aura);
+            transform: translateY(-5px);
+            box-shadow: 0 14px 36px rgba(255,215,0,0.12);
+        }
+
+        .bot-avatar-wrap {
+            display: inline-block;
+            position: relative;
+            margin-bottom: 1rem;
+        }
+
+        .bot-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--gold);
+            display: block;
+            animation: aura-pulse 3.5s ease-in-out infinite;
+        }
+
+        .bot-avatar-wrap::before {
+            content: '';
+            position: absolute;
+            inset: -5px;
+            border-radius: 50%;
+            background: conic-gradient(var(--gold), var(--aura), var(--yellow), var(--gold));
+            z-index: -1;
+            animation: spin-slow 8s linear infinite;
+            opacity: 0.45;
+        }
+
+        .bot-avatar-wrap::after {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            border-radius: 50%;
+            background: var(--panel);
+            z-index: -1;
+        }
+
+        .bot-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            font-size: 0.68rem;
+            font-family: 'JetBrains Mono', monospace;
+            color: #4ade80;
+            letter-spacing: 0.08em;
+            margin-bottom: 0.6rem;
+        }
+
+        .bot-status::before {
+            content: '';
+            display: block;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #4ade80;
+            box-shadow: 0 0 6px #4ade80;
+            animation: pulse-dot 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; }
+            50%       { opacity: 0.4; }
+        }
+
+        .bot-name {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--gold);
+            margin-bottom: 0.35rem;
+        }
+
+        .bot-client {
+            font-size: 0.76rem;
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--muted);
+            margin-bottom: 0.6rem;
+        }
+
+        .bot-desc {
+            font-size: 0.8rem;
+            color: rgba(255,250,205,0.6);
+            line-height: 1.6;
+        }
+
         /* ── RESPONSIVE ── */
         @media (max-width: 768px) {
             .nav-links { display: none; }
             .about-grid { grid-template-columns: 1fr; gap: 2rem; }
             .projects-grid { grid-template-columns: 1fr; }
+            .tools-grid { grid-template-columns: 1fr; }
+            .bots-grid { grid-template-columns: 1fr; }
             .contact-links { flex-direction: column; align-items: center; }
             nav { padding: 0.9rem 1.25rem; }
         }
@@ -659,8 +858,9 @@
     <ul class="nav-links">
         <li><a href="#about"    data-es="Sobre mí"  data-en="About">Sobre mí</a></li>
         <li><a href="#stack"    data-es="Stack"     data-en="Stack">Stack</a></li>
-        <li><a href="#projects" data-es="Proyectos" data-en="Projects">Proyectos</a></li>
-        <li><a href="#contact"  data-es="Contacto"  data-en="Contact">Contacto</a></li>
+        <li><a href="#projects"  data-es="Proyectos"  data-en="Projects">Proyectos</a></li>
+        <li><a href="#ecosystem" data-es="Productos"  data-en="Products">Productos</a></li>
+        <li><a href="#contact"   data-es="Contacto"   data-en="Contact">Contacto</a></li>
     </ul>
     <div class="lang-toggle">
         <button class="lang-btn active" id="btn-es" onclick="setLang('es')">ES</button>
@@ -702,7 +902,7 @@
             <span data-es="Años en producción" data-en="Years in production">Años en producción</span>
         </div>
         <div class="stat-item">
-            <strong>2</strong>
+            <strong>6+</strong>
             <span data-es="Productos activos" data-en="Active products">Productos activos</span>
         </div>
         <div class="stat-item">
@@ -855,6 +1055,106 @@
     </div>
 </section>
 
+<!-- ECOSYSTEM -->
+<section id="ecosystem">
+    <h2 class="section-title reveal" data-es="Ecosistema en Producción" data-en="Production Ecosystem">Ecosistema en Producción</h2>
+    <div class="section-line reveal"></div>
+
+    <p class="eco-sub-title reveal" data-es="— Herramientas —" data-en="— Tools —">— Herramientas —</p>
+    <div class="tools-grid">
+
+        <div class="tool-card reveal">
+            <span class="tool-badge" data-es="En Producción" data-en="Live">En Producción</span>
+            <span class="tool-icon">🏥</span>
+            <div class="tool-name" data-es="Gestión de Consultas" data-en="Consultation Manager">Gestión de Consultas</div>
+            <p class="tool-desc"
+               data-es="Plataforma de gestión administrativa para consultorios médicos. Turnos, pacientes y administración en un solo lugar."
+               data-en="Administrative management platform for medical practices. Appointments, patients and administration in one place.">
+                Plataforma de gestión administrativa para consultorios médicos. Turnos, pacientes y administración en un solo lugar.
+            </p>
+            <a href="https://tools-drakardaszivana.micitamedica.me/consultas" target="_blank" class="tool-link">
+                🌐 <span data-es="Ver plataforma" data-en="View platform">Ver plataforma</span> →
+            </a>
+        </div>
+
+        <div class="tool-card reveal">
+            <span class="tool-badge" data-es="En Producción" data-en="Live">En Producción</span>
+            <span class="tool-icon">📄</span>
+            <div class="tool-name" data-es="Generador de Certificados" data-en="Certificate Generator">Generador de Certificados</div>
+            <p class="tool-desc"
+               data-es="Herramienta de generación automática de certificados médicos en PDF. Integrada con flujo Telegram vía n8n."
+               data-en="Automated medical certificate PDF generator. Integrated with Telegram flow via n8n.">
+                Herramienta de generación automática de certificados médicos en PDF. Integrada con flujo Telegram vía n8n.
+            </p>
+            <a href="https://tools-drakardaszivana.micitamedica.me" target="_blank" class="tool-link">
+                🌐 <span data-es="Ver herramienta" data-en="View tool">Ver herramienta</span> →
+            </a>
+        </div>
+
+        <div class="tool-card reveal">
+            <span class="tool-badge" data-es="En Producción" data-en="Live">En Producción</span>
+            <span class="tool-icon">💊</span>
+            <div class="tool-name" data-es="Automatización de Recetas" data-en="Prescription Automation">Automatización de Recetas</div>
+            <p class="tool-desc"
+               data-es="Sistema automatizado para la emisión y gestión de recetas médicas. Reduce tiempos y elimina errores en el proceso."
+               data-en="Automated system for issuing and managing medical prescriptions. Reduces processing time and eliminates errors.">
+                Sistema automatizado para la emisión y gestión de recetas médicas. Reduce tiempos y elimina errores en el proceso.
+            </p>
+            <a href="https://wa.me/5493794051686?text=Hola!%20Me%20interesa%20la%20automatización%20de%20recetas" target="_blank" class="tool-link">
+                💬 <span data-es="Solicitar demo" data-en="Request demo">Solicitar demo</span> →
+            </a>
+        </div>
+
+    </div>
+
+    <p class="eco-sub-title reveal" data-es="— Bots en Producción —" data-en="— Live Bots —">— Bots en Producción —</p>
+    <div class="bots-grid">
+
+        <div class="bot-card reveal">
+            <div class="bot-avatar-wrap">
+                <img src="./CharlyBot.png" alt="CharlyBot" class="bot-avatar">
+            </div>
+            <div class="bot-status" data-es="Activo 24/7" data-en="Active 24/7">Activo 24/7</div>
+            <div class="bot-name">CharlyBot</div>
+            <div class="bot-client">AnitaByCitaMedica</div>
+            <p class="bot-desc"
+               data-es="Bot de WhatsApp para gestión de turnos médicos. Agendamiento, recordatorios y atención automatizada para CitaMedica."
+               data-en="WhatsApp bot for medical appointment management. Scheduling, reminders and automated service for CitaMedica.">
+                Bot de WhatsApp para gestión de turnos médicos. Agendamiento, recordatorios y atención automatizada para CitaMedica.
+            </p>
+        </div>
+
+        <div class="bot-card reveal">
+            <div class="bot-avatar-wrap">
+                <img src="./AnitaBot.png" alt="AnitaBot Odontología" class="bot-avatar">
+            </div>
+            <div class="bot-status" data-es="Activo 24/7" data-en="Active 24/7">Activo 24/7</div>
+            <div class="bot-name">AnitaChatBot</div>
+            <div class="bot-client">Odontología</div>
+            <p class="bot-desc"
+               data-es="Asistente virtual para consultorio odontológico. Captura leads y agenda citas de forma autónoma por WhatsApp."
+               data-en="Virtual assistant for dental practice. Captures leads and schedules appointments autonomously via WhatsApp.">
+                Asistente virtual para consultorio odontológico. Captura leads y agenda citas de forma autónoma por WhatsApp.
+            </p>
+        </div>
+
+        <div class="bot-card reveal">
+            <div class="bot-avatar-wrap">
+                <img src="./AnitaBot.png" alt="AnitaBot Dr. Hara" class="bot-avatar">
+            </div>
+            <div class="bot-status" data-es="Activo 24/7" data-en="Active 24/7">Activo 24/7</div>
+            <div class="bot-name">AnitaChatBot</div>
+            <div class="bot-client">Dr. Jorge Hara</div>
+            <p class="bot-desc"
+               data-es="Chatbot personalizado para el consultorio del Dr. Jorge Hara. Atención inicial y gestión de turnos sin intervención humana."
+               data-en="Personalized chatbot for Dr. Jorge Hara's practice. Initial care and appointment management without human intervention.">
+                Chatbot personalizado para el consultorio del Dr. Jorge Hara. Atención inicial y gestión de turnos sin intervención humana.
+            </p>
+        </div>
+
+    </div>
+</section>
+
 <!-- CONTACT -->
 <section id="contact">
     <h2 class="section-title reveal" data-es="¿Hablamos?" data-en="Let's talk?">¿Hablamos?</h2>
@@ -867,9 +1167,6 @@
     <div class="contact-links">
         <a href="https://wa.me/5493794051686" target="_blank" class="contact-link reveal">
             <span>📱</span> WhatsApp
-        </a>
-        <a href="mailto:empresamodelo2025@gmail.com" class="contact-link reveal">
-            <span>✉️</span> Email
         </a>
         <a href="https://github.com/jorgehara" target="_blank" class="contact-link reveal">
             <span>🐙</span> GitHub
